@@ -24,53 +24,55 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
         title: Text('Hesap Özeti'),
         // AppBar stil ayarları yapılabilir
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            // Kalender ikonunu kullan
-            child: Icon(Icons.event, size: 100, color: Colors.blue),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Text(
-              'Son ödeme tarihi yaklaşan ödemelerinizi hatırlatmamızı ister misiniz?',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 16),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              // Kalender ikonunu kullan
+              child: Icon(Icons.event, size: 100, color: Colors.blue),
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                OutlinedButton(
-                  onPressed: () {
-                    // Sonra karar ver butonu işlevi
-                  },
-                  child: Text('Sonra Karar Ver'),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Evet, isterim butonu işlevi
-                  },
-                  child: Text('Evet, İsterim'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Son ödeme tarihi yaklaşan ödemelerinizi hatırlatmamızı ister misiniz?',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  OutlinedButton(
+                    onPressed: () {
+                      // Sonra karar ver butonu işlevi
+                    },
+                    child: Text('Sonra Karar Ver'),
                   ),
-                ),
-              ],
+                  ElevatedButton(
+                    onPressed: () {
+                      // Evet, isterim butonu işlevi
+                    },
+                    child: Text('Evet, İsterim'),
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          NoDebtInfoSection(),
-          MyCardsSection(),
-          AccountGraphSection(),
-          // Diğer widget'lar buraya eklenebilir.
-        ],
+            NoDebtInfoSection(),
+            MyCardsSection(),
+            AccountGraphSection(),
+            // Diğer widget'lar buraya eklenebilir.
+          ],
+        ),
       ),
-        bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -86,7 +88,6 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
         onTap: _onItemTapped,
       ),
     );
-    
   }
 }
 

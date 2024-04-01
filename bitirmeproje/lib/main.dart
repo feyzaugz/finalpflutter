@@ -1,6 +1,5 @@
 // import 'package:flutter/material.dart';
 
-
 // void main() {
 //   runApp(MyApp());
 // }
@@ -36,7 +35,7 @@
 //             ],
 //           ),
 //         ),
-        
+
 //       ),
 //       bottomNavigationBar: BottomNavigationBarSection(), // Alt menüyü ekleyin
 
@@ -44,23 +43,25 @@
 //   }
 // }
 
+import 'package:bitirmeproje/core/app_router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'hesapozeti.dart'; // Hesap Özeti ekranı için dosya
 
 void main() {
-  runApp(MyApp());
+  runApp(ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Borç Ödeme Ekranı',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DebtScreen(),
+      routerConfig: ref.read(goRouterProvider),
     );
   }
 }
@@ -158,7 +159,8 @@ class UserCard extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
                 'Feyza Uğuz\nAnkara',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -182,7 +184,8 @@ class DebtCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: ListTile(
         title: Text('Borcunuz'),
-        subtitle: Text('2.560,21 TL', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
+        subtitle: Text('2.560,21 TL',
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
         trailing: ElevatedButton(
           onPressed: () {
             // Ödeme yapma işlevi
@@ -209,8 +212,11 @@ class IlanPanosuSection extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           IlanCard(title: 'Badanacı', icon: Icons.brush),
-          IlanCard(title: 'ÖZEL DERS / Yüzme, Matematik, İngilizce', icon: Icons.school),
-          IlanCard(title: 'Mobil Oyun, Üretkenlik ve Hobi', icon: Icons.gamepad),
+          IlanCard(
+              title: 'ÖZEL DERS / Yüzme, Matematik, İngilizce',
+              icon: Icons.school),
+          IlanCard(
+              title: 'Mobil Oyun, Üretkenlik ve Hobi', icon: Icons.gamepad),
           // Daha fazla ilan card eklenebilir
           TextButton(
             onPressed: () {
@@ -243,14 +249,15 @@ class IlanCard extends StatelessWidget {
   final String title;
   final IconData icon;
 
-  const IlanCard({Key? key, required this.title, required this.icon}) : super(key: key);
+  const IlanCard({Key? key, required this.title, required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.only(bottom: 8.0),
       child: ListTile(
-                leading: Icon(icon, color: Theme.of(context).primaryColor),
+        leading: Icon(icon, color: Theme.of(context).primaryColor),
         title: Text(title),
         trailing: IconButton(
           icon: Icon(Icons.close),
@@ -284,7 +291,8 @@ class AyricaliklarimSection extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 1 / 1, // Kare şeklinde kartlar için aspect ratio
+              childAspectRatio:
+                  1 / 1, // Kare şeklinde kartlar için aspect ratio
             ),
             itemBuilder: (context, index) {
               // Dummy data ile örnek bir kart oluşturuyorum
@@ -321,7 +329,8 @@ class AyricalikCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch, // Kart içindeki içeriği genişlet
+        crossAxisAlignment:
+            CrossAxisAlignment.stretch, // Kart içindeki içeriği genişlet
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
@@ -340,6 +349,7 @@ class AyricalikCard extends StatelessWidget {
     );
   }
 }
+
 class DuyurularSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -385,6 +395,7 @@ class DuyurularSection extends StatelessWidget {
     );
   }
 }
+
 class BottomNavigationBarSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
