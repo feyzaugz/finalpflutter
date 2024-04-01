@@ -10,21 +10,21 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SignInScreen(
       providers: [EmailAuthProvider()],
-      showAuthActionSwitch: false,
+      showAuthActionSwitch: true,
       sideBuilder: (context, constraints) => buildSideBar(context),
       headerBuilder: (context, constraints, _) => buildHeader(context),
     );
   }
 
   buildSideBar(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [],
     );
   }
 
   buildHeader(BuildContext context) {
-    return Column(
+    return const Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [],
     );

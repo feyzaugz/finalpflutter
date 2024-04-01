@@ -1,6 +1,7 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../core/global_providers/auth_state_provider.dart';
 
@@ -14,7 +15,11 @@ class EmailVerifyScreen extends StatelessWidget {
     return EmailVerificationScreen(
       sideBuilder: (context, constraints) => buildBrand(context),
       headerBuilder: (context, constraints, _) => buildBrand(context),
-      actions: [EmailVerifiedAction(() {})],
+      actions: [
+        EmailVerifiedAction(() {
+          context.push("/");
+        })
+      ],
     );
   }
 
