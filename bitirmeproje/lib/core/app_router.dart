@@ -1,5 +1,6 @@
+import 'package:bitirmeproje/hesapozeti.dart';
 import 'package:bitirmeproje/screens/email_verify_screen.dart';
-import 'package:bitirmeproje/screens/landing_screen.dart';
+import 'package:bitirmeproje/screens/debt_screen/landing_screen.dart';
 import 'package:bitirmeproje/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -82,6 +83,24 @@ class RouterNotifier extends ChangeNotifier {
           routes: [
             GoRoute(
               path: '/',
+              parentNavigatorKey: shellNavigator,
+              builder: (BuildContext context, GoRouterState state) {
+                return LandingScreen(path: state.path.toString());
+              },
+              redirect: (context, state) {
+                if (user == null) {
+                  return LoginScreen.routeName;
+                } else {
+                  if (!user!.emailVerified) {
+                    return EmailVerifyScreen.routeName;
+                  } else {
+                    return null;
+                  }
+                }
+              },
+            ),
+            GoRoute(
+              path: HesapOzetiScreen.routeName,
               parentNavigatorKey: shellNavigator,
               builder: (BuildContext context, GoRouterState state) {
                 return LandingScreen(path: state.path.toString());

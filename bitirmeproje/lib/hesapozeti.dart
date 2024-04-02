@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class HesapOzetiScreen extends StatefulWidget {
+  static const String routeName = "/hesap-ozeti";
+
   @override
   _HesapOzetiScreenState createState() => _HesapOzetiScreenState();
 }
@@ -71,21 +73,6 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
             // Diğer widget'lar buraya eklenebilir.
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Ana Sayfa',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long),
-            label: 'Hesap Özeti',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }
