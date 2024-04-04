@@ -39,8 +39,10 @@ class IlanPanosuSection extends StatelessWidget {
             icon: Icon(Icons.add),
             label: Text('Oluştur'),
             style: ElevatedButton.styleFrom(
-              primary: Colors.green,
-              onPrimary: Colors.white,
+              foregroundColor: Colors.green,
+              backgroundColor: Colors.white,
+              // primary: Colors.green,
+              // onPrimary: Colors.white,
             ),
           ),
         ],

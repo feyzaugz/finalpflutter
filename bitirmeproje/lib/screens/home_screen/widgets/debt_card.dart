@@ -1,20 +1,32 @@
+import 'package:bitirmeproje/core/global_providers/user_state_provider.dart';
+import 'package:bitirmeproje/core/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DebtCard extends StatelessWidget {
+class DebtCard extends ConsumerWidget {
+  const DebtCard({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userStateProvider);
+    if (user == null) return const SizedBox.shrink();
+
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       child: ListTile(
-        title: Text('Borcunuz'),
-        subtitle: Text('2.560,21 TL',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
+        title: const Text('Borcunuz'),
+        subtitle: Text(Utils.currencyFormat(user.debt),
+            style:
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
         trailing: ElevatedButton(
           onPressed: () {
             // Ödeme yapma işlevi
           },
-          child: Text('Ödeme Yap'),
-          style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.blueAccent,
+            // primary: Colors.blueAccent
+          ),
+          child: const Text('Ödeme Yap'),
         ),
       ),
     );

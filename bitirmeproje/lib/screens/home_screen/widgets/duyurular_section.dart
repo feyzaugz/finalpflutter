@@ -32,7 +32,8 @@ class DuyurularSection extends StatelessWidget {
               // Duyuru detaylarına git
             },
             style: ElevatedButton.styleFrom(
-              primary: Colors.orange,
+              foregroundColor: Colors.orange,
+              // primary: Colors.orange,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),

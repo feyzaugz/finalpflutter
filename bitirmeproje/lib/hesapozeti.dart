@@ -61,7 +61,8 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
                     },
                     child: Text('Evet, İsterim'),
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.blue,
+                      foregroundColor: Colors.blue,
+                      // primary: Colors.blue,
                     ),
                   ),
                 ],
@@ -164,7 +165,8 @@ class AccountGraphSection extends StatelessWidget {
                 icon: Icon(Icons.search),
                 label: Text('Hesap Özeti'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue[200],
+                  foregroundColor: Colors.blue[200],
+                  // primary: Colors.blue[200],
                   shape: StadiumBorder(),
                 ),
               ),
@@ -175,8 +177,10 @@ class AccountGraphSection extends StatelessWidget {
                 icon: Icon(Icons.payment),
                 label: Text('Ödeme Yap'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  onPrimary: Colors.white,
+                  foregroundColor: Colors.blue,
+                  backgroundColor: Colors.white,
+                  //     primary: Colors.blue,
+                  // onPrimary: Colors.white,
                   shape: StadiumBorder(),
                 ),
               ),
