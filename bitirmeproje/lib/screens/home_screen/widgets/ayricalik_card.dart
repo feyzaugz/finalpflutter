@@ -24,7 +24,7 @@ class AyricalikCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Image.asset(
-              '',
+              'assets/images/ayricaliklar.png',
               fit: BoxFit.cover, // Resmi kaplayacak şekilde ayarla
             ),
           ),
