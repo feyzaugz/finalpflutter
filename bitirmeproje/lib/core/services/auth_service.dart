@@ -15,6 +15,10 @@ class AuthService {
   void updateLanguage(String? languageCode) {
     _auth.setLanguageCode(languageCode);
   }
+
+  Future<User?> getUser() async {
+    return _auth.currentUser;
+  }
 }
 
 @riverpod

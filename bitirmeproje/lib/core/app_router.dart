@@ -49,11 +49,7 @@ class RouterNotifier extends ChangeNotifier {
             if (user == null) {
               return null;
             } else {
-              if (user!.emailVerified) {
-                return "/";
-              } else {
-                return EmailVerifyScreen.routeName;
-              }
+              return "/";
             }
           },
         ),
@@ -67,11 +63,7 @@ class RouterNotifier extends ChangeNotifier {
             if (user == null) {
               return LoginScreen.routeName;
             } else {
-              if (user!.emailVerified) {
-                return "/";
-              } else {
-                return null;
-              }
+              return null;
             }
           },
         ),
@@ -91,11 +83,7 @@ class RouterNotifier extends ChangeNotifier {
                 if (user == null) {
                   return LoginScreen.routeName;
                 } else {
-                  if (!user!.emailVerified) {
-                    return EmailVerifyScreen.routeName;
-                  } else {
-                    return null;
-                  }
+                  return "/";
                 }
               },
             ),
@@ -109,11 +97,7 @@ class RouterNotifier extends ChangeNotifier {
                 if (user == null) {
                   return LoginScreen.routeName;
                 } else {
-                  if (!user!.emailVerified) {
-                    return EmailVerifyScreen.routeName;
-                  } else {
-                    return null;
-                  }
+                  return null;
                 }
               },
             ),

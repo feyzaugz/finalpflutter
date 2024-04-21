@@ -19,6 +19,7 @@ class AuthState extends _$AuthState {
 
   listenUserChanges() {
     FirebaseAuth.instance.authStateChanges().listen((event) {
+      print("Auth state event $event");
       state = event;
     });
   }
@@ -53,6 +54,14 @@ class AuthState extends _$AuthState {
         );
       }
       return false;
+    }
+  }
+
+  Future<void> getUser() async {
+    try {
+      state = await ref.read(authRepositoryProvider).getUser();
+    } on FirebaseException catch (e) {
+      debugPrint(e.toString());
     }
   }
 }

@@ -31,7 +31,7 @@ class FirestoreService {
         .collection('users')
         .doc(uid)
         .set({"uid": uid, "debt": 100, "name": "", "lastName": ""});
-    return AppUser(uid: uid, debt: 100);
+    return AppUser(uid: uid, name: "", debt: 100, lastName: "");
   }
 }
 

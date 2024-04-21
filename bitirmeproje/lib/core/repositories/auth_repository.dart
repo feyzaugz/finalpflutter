@@ -1,4 +1,5 @@
 import 'package:bitirmeproje/core/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -14,6 +15,10 @@ class AuthRepository {
 
   void updateLanguage(String? v) {
     _ref.read(authServiceProvider).updateLanguage(v);
+  }
+
+  Future<User?> getUser() {
+    return _ref.read(authServiceProvider).getUser();
   }
 }
 

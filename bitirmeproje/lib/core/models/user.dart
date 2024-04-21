@@ -4,7 +4,11 @@ class AppUser {
   late String lastName;
   late double debt;
 
-  AppUser({required this.uid, required this.debt});
+  AppUser(
+      {required this.uid,
+      required this.debt,
+      required this.name,
+      required this.lastName});
 
   AppUser.fromJson(dynamic json) {
     uid = json['uid'];
