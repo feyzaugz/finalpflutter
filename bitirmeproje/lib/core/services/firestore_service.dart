@@ -1,4 +1,5 @@
 import 'package:bitirmeproje/core/models/advert.dart';
+import 'package:bitirmeproje/core/models/announcement.dart';
 import 'package:bitirmeproje/core/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -55,6 +56,25 @@ class FirestoreService {
 
   Future<void> createNewAdvert(Advert newAdvert) async {
     await db.collection("ilanlar").add(newAdvert.toJson());
+  }
+
+  Future<List<Announcement>> getAnnouncement() async {
+    List<Announcement> announcements = [];
+
+    QuerySnapshot<Announcement> doc = await db
+        .collection('announcements')
+        .withConverter<Announcement>(
+          fromFirestore: (announcement, _) =>
+              Announcement.fromJson(announcement.data()!),
+          toFirestore: (announcement, _) => announcement.toJson(),
+        )
+        .get();
+
+    for (var announcement in doc.docs) {
+      announcements.add(announcement.data());
+    }
+
+    return announcements;
   }
 }
 

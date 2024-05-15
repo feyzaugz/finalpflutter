@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/Ayrıcalıklar/ayricaliklarım_section.dart';
-import 'widgets/Duyurular/duyurular_section.dart';
+import 'widgets/duyurular/duyurular_section.dart';
 import 'widgets/İlan/ilan_panosu_section.dart';
 import 'widgets/user_info_debt_section.dart';
 
@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
             UserInfoAndDebtSection(),
             const IlanPanosuSection(),
             const AyricaliklarimSection(),
-            DuyurularSection(),
+            const DuyurularSection(),
           ],
         ),
       ),
