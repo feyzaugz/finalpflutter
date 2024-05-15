@@ -24,6 +24,10 @@ class FirestoreRepository {
     }
     return ilanlar;
   }
+
+  Future<void> createNewAdvert(Advert newAdvert) async {
+    return _ref.read(firestoreServiceProvider).createNewAdvert(newAdvert);
+  }
 }
 
 @riverpod

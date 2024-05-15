@@ -52,6 +52,10 @@ class FirestoreService {
 
     return ilanlar;
   }
+
+  Future<void> createNewAdvert(Advert newAdvert) async {
+    await db.collection("ilanlar").add(newAdvert.toJson());
+  }
 }
 
 @riverpod

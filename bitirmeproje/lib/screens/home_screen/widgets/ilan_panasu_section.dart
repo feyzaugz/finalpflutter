@@ -10,7 +10,7 @@ class IlanPanosuSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'İlan Panosu',
             style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
           ),

@@ -12,9 +12,7 @@ class IlanCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5.0),
       child: Card(
-        margin: EdgeInsets.only(
-          bottom: 8.0,
-        ),
+        margin: const EdgeInsets.only(bottom: 8.0),
         child: ListTile(
           leading: Icon(icon, color: Theme.of(context).primaryColor),
           title: Text(title),

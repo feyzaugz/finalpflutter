@@ -70,7 +70,8 @@ class IlanPanosuSection extends ConsumerWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => IlanOlusturScreen()),
+                      builder: (context) => const IlanOlusturScreen(),
+                    ),
                   );
                 },
                 icon: const Icon(Icons.add),
