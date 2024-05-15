@@ -9,14 +9,14 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return const SafeArea(
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             UserInfoAndDebtSection(),
-            const IlanPanosuSection(),
-            const AyricaliklarimSection(),
-            const DuyurularSection(),
+            IlanPanosuSection(),
+            AyricaliklarimSection(),
+            DuyurularSection(),
           ],
         ),
       ),

@@ -4,9 +4,11 @@ import '../../debt_screen/debt_card.dart';
 import 'kullanici_card.dart';
 
 class UserInfoAndDebtSection extends StatelessWidget {
+  const UserInfoAndDebtSection({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         // Kullanıcı bilgi kartı
         UserCard(),

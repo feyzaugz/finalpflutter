@@ -38,6 +38,10 @@ class FirestoreRepository {
   Future<void> addNewRequest(Request request) async {
     return _ref.read(firestoreServiceProvider).addNewRequest(request);
   }
+
+  Future<void> payDebt(String uid) async {
+    return _ref.read(firestoreServiceProvider).payDebt(uid);
+  }
 }
 
 @riverpod

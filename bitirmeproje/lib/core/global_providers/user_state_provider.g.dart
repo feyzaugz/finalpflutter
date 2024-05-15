@@ -6,7 +6,7 @@ part of 'user_state_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userStateHash() => r'd23a855a4089af2f48293cb79f3c4be12deedb19';
+String _$userStateHash() => r'e8795a61d8e15d3f4ff1d8a564637de07d6d7f57';
 
 /// See also [UserState].
 @ProviderFor(UserState)

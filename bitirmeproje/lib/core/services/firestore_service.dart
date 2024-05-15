@@ -81,6 +81,10 @@ class FirestoreService {
   Future<void> addNewRequest(Request request) async {
     await db.collection("requests").add(request.toJson());
   }
+
+  Future<void> payDebt(String uid) async {
+    await db.collection("users").doc(uid).update({"debt": 0});
+  }
 }
 
 @riverpod

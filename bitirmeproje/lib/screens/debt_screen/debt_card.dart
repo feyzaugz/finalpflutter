@@ -3,7 +3,7 @@ import 'package:bitirmeproje/core/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../home_screen/widgets/ödeme_ekrani.dart';
+import '../home_screen/widgets/odeme_ekrani.dart';
 
 class DebtCard extends ConsumerWidget {
   const DebtCard({super.key});
@@ -20,21 +20,23 @@ class DebtCard extends ConsumerWidget {
         subtitle: Text(Utils.currencyFormat(user.debt),
             style:
                 const TextStyle(fontWeight: FontWeight.bold, fontSize: 22.0)),
-        trailing: ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PaymentScreen(),
-              ),
-            );
-          },
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.blueAccent,
-            // primary: Colors.blueAccent
-          ),
-          child: const Text('Ödeme Yap'),
-        ),
+        trailing: user.debt > 0
+            ? ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PaymentScreen(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.blueAccent,
+                  // primary: Colors.blueAccent
+                ),
+                child: const Text('Ödeme Yap'),
+              )
+            : null,
       ),
     );
   }
