@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/Ayrıcalıklar/ayricaliklarım_section.dart';
+import 'widgets/ayricaliklar/ayricaliklarim_section.dart';
 import 'widgets/duyurular/duyurular_section.dart';
 import 'widgets/İlan/ilan_panosu_section.dart';
 import 'widgets/user_info_debt_section.dart';

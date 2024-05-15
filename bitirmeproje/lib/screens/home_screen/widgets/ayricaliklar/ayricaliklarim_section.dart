@@ -1,11 +1,17 @@
+import 'package:bitirmeproje/screens/home_screen/widgets/ayricaliklar/providers/privileges_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'ayricalik_card.dart';
 
-class AyricaliklarimSection extends StatelessWidget {
+class AyricaliklarimSection extends ConsumerWidget {
   const AyricaliklarimSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final privileges = ref.watch(privilegesProvider);
+    if (privileges.isEmpty) {
+      return const SizedBox.shrink();
+    }
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Column(
@@ -20,7 +26,7 @@ class AyricaliklarimSection extends StatelessWidget {
             height: 200,
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 4,
+              itemCount: privileges.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1, // Yatayda tek öğe göstermek için
                 crossAxisSpacing: 20,
@@ -28,12 +34,7 @@ class AyricaliklarimSection extends StatelessWidget {
                 childAspectRatio: 1, // Genişlik/yükseklik oranı
               ),
               itemBuilder: (context, index) {
-                return AyricalikCard(
-                  title: 'Başlık $index',
-                  subtitle: 'Alt başlık $index',
-                  iconData: Icons.star,
-                  imagePath: 'assets/images/ayricalik.png',
-                );
+                return AyricalikCard(privilege: privileges[index]);
               },
             ),
           ),

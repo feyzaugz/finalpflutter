@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/models/advert.dart';
 import 'package:bitirmeproje/core/models/announcement.dart';
+import 'package:bitirmeproje/core/models/privilege.dart';
 import 'package:bitirmeproje/core/models/request.dart';
 import 'package:bitirmeproje/core/models/user.dart';
 import 'package:bitirmeproje/core/services/firestore_service.dart';
@@ -41,6 +42,10 @@ class FirestoreRepository {
 
   Future<void> payDebt(String uid) async {
     return _ref.read(firestoreServiceProvider).payDebt(uid);
+  }
+
+  Future<List<Privilege>> getPrivileges() async {
+    return _ref.read(firestoreServiceProvider).getPrivileges();
   }
 }
 

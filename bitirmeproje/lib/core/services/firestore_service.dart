@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/models/advert.dart';
 import 'package:bitirmeproje/core/models/announcement.dart';
+import 'package:bitirmeproje/core/models/privilege.dart';
 import 'package:bitirmeproje/core/models/request.dart';
 import 'package:bitirmeproje/core/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -84,6 +85,25 @@ class FirestoreService {
 
   Future<void> payDebt(String uid) async {
     await db.collection("users").doc(uid).update({"debt": 0});
+  }
+
+  Future<List<Privilege>> getPrivileges() async {
+    List<Privilege> privileges = [];
+
+    QuerySnapshot<Privilege> doc = await db
+        .collection('privileges')
+        .withConverter<Privilege>(
+          fromFirestore: (announcement, _) =>
+              Privilege.fromJson(announcement.data()!),
+          toFirestore: (announcement, _) => announcement.toJson(),
+        )
+        .get();
+
+    for (var announcement in doc.docs) {
+      privileges.add(announcement.data());
+    }
+
+    return privileges;
   }
 }
 

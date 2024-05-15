@@ -1,17 +1,12 @@
+import 'package:bitirmeproje/core/models/privilege.dart';
 import 'package:flutter/material.dart';
 
 class AyricalikCard extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final IconData iconData;
-  final String imagePath;
+  final Privilege privilege;
 
   const AyricalikCard({
     Key? key,
-    required this.title,
-    required this.subtitle,
-    required this.iconData,
-    required this.imagePath,
+    required this.privilege,
   }) : super(key: key);
 
   @override
@@ -23,8 +18,8 @@ class AyricalikCard extends StatelessWidget {
             CrossAxisAlignment.start, // İçerikleri baştan başlat
         mainAxisSize: MainAxisSize.min, // İçeriğin boyutuna göre küçült
         children: <Widget>[
-          Image.asset(
-            imagePath,
+          Image.network(
+            privilege.image,
             height: 120, // Resim yüksekliğini sabit bir değere ayarla
             width: double.infinity, // Genişliği tam kapla
             fit: BoxFit.cover, // Resmi uygun şekilde ölçeklendir
@@ -35,10 +30,10 @@ class AyricalikCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  title,
+                  privilege.title,
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Text(subtitle),
+                Text(privilege.subtitle),
               ],
             ),
           ),
