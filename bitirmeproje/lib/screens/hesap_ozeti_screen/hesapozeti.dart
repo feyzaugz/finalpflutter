@@ -1,30 +1,23 @@
+import 'package:bitirmeproje/core/global_providers/user_state_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'screens/home_screen/widgets/kart_ekle.dart';
+import 'kart_ekle.dart';
 
-class HesapOzetiScreen extends StatefulWidget {
+class HesapOzetiScreen extends ConsumerStatefulWidget {
   static const String routeName = "/hesap-ozeti";
 
   const HesapOzetiScreen({super.key});
 
   @override
-  _HesapOzetiScreenState createState() => _HesapOzetiScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _HesapOzetiScreenState();
 }
 
-class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
-  int _selectedIndex = 1; // Hesap Özeti sekmesi varsayılan olarak seçili
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 0) {
-      Navigator.pop(context); // Eğer Ana Sayfa ise, önceki ekrana dön
-    }
-    // Hesap Özeti zaten görüntüleniyor, bu yüzden ekstra bir işlem yapmaya gerek yok.
-  }
-
+class _HesapOzetiScreenState extends ConsumerState<HesapOzetiScreen> {
+  @override
   Widget build(BuildContext context) {
+    final user = ref.watch(userStateProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hesap Özeti'),
@@ -64,17 +57,17 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
                     onPressed: () {
                       // Evet, isterim butonu işlevi
                     },
-                    child: const Text('Evet, İsterim'),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.blue,
                       // primary: Colors.blue,
                     ),
+                    child: const Text('Evet, İsterim'),
                   ),
                 ],
               ),
             ),
-            NoDebtInfoSection(),
-            MyCardsSection(),
+            if (user!.debt == 0) const NoDebtInfoSection(),
+            const MyCardsSection(),
             AccountGraphSection(),
             // Diğer widget'lar buraya eklenebilir.
           ],
@@ -85,6 +78,8 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
 }
 
 class NoDebtInfoSection extends StatelessWidget {
+  const NoDebtInfoSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return const Padding(
@@ -106,6 +101,8 @@ class NoDebtInfoSection extends StatelessWidget {
 }
 
 class MyCardsSection extends StatelessWidget {
+  const MyCardsSection({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -119,13 +116,17 @@ class MyCardsSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.credit_card, size: 48, color: Colors.blue),
-                    SizedBox(width: 10),
-                    Text('Kayıtlı Kartınız Bulunmuyor!'),
-                  ],
+                const Expanded(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.credit_card, size: 48, color: Colors.blue),
+                      SizedBox(width: 10),
+                      Expanded(
+                        child: Text('Kayıtlı Kartınız Bulunmuyor!'),
+                      ),
+                    ],
+                  ),
                 ),
                 OutlinedButton(
                   onPressed: () {

@@ -47,6 +47,10 @@ class FirestoreRepository {
   Future<List<Privilege>> getPrivileges() async {
     return _ref.read(firestoreServiceProvider).getPrivileges();
   }
+
+  Future<void> addNewCard(Map<String, dynamic> cardDetails, String uid) async {
+    return _ref.read(firestoreServiceProvider).addNewCard(cardDetails, uid);
+  }
 }
 
 @riverpod

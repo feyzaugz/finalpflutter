@@ -105,6 +105,10 @@ class FirestoreService {
 
     return privileges;
   }
+
+  Future<void> addNewCard(Map<String, dynamic> cardDetails, String uid) async {
+    await db.collection("users").doc(uid).collection("cards").add(cardDetails);
+  }
 }
 
 @riverpod

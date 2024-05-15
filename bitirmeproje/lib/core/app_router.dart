@@ -1,4 +1,4 @@
-import 'package:bitirmeproje/hesapozeti.dart';
+import 'package:bitirmeproje/screens/hesap_ozeti_screen/hesapozeti.dart';
 import 'package:bitirmeproje/screens/email_verify_screen.dart';
 import 'package:bitirmeproje/screens/debt_screen/landing_screen.dart';
 import 'package:bitirmeproje/screens/Diger%20Ekran/diger_screen.dart';

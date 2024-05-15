@@ -1,4 +1,4 @@
-import 'package:bitirmeproje/hesapozeti.dart';
+import 'package:bitirmeproje/screens/hesap_ozeti_screen/hesapozeti.dart';
 import 'package:bitirmeproje/screens/home_screen/home_screen.dart';
 import 'package:bitirmeproje/screens/Diger%20Ekran/diger_screen.dart';
 import 'package:bitirmeproje/screens/taleplerim_screen/taleplerim.dart';
