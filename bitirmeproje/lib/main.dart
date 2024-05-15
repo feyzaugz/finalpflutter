@@ -1,54 +1,11 @@
-// import 'package:flutter/material.dart';
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       title: 'Borç Ödeme Ekranı',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: DebtScreen(),
-//     );
-//   }
-// }
-
-// class DebtScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.lightBlueAccent,
-//       body: SafeArea(
-//         child: SingleChildScrollView(
-//           child: Column(
-//             children: <Widget>[
-//               UserInfoAndDebtSection(),
-//               IlanPanosuSection(),
-//               AyricaliklarimSection(),
-//               DuyurularSection(),
-//               // İhtiyaca göre daha fazla bölüm eklenebilir
-//             ],
-//           ),
-//         ),
-
-//       ),
-//       bottomNavigationBar: BottomNavigationBarSection(), // Alt menüyü ekleyin
-
-//     );
-//   }
-// }
-
 import 'package:bitirmeproje/core/app_router.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'firebase_options.dart';
-import 'hesapozeti.dart'; // Hesap Özeti ekranı için dosya
+import 'hesapozeti.dart';
+import 'screens/Diger Ekran/diger_screen.dart';
+import 'screens/Taleplerim Ekran/taleplerim.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,7 +23,7 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Borç Ödeme Ekranı',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
       ),
       routerConfig: ref.read(goRouterProvider),
     );
@@ -90,77 +47,30 @@ class _DebtScreenState extends State<DebtScreen> {
       case 1: // Hesap Özeti ekranının indexi
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HesapOzetiScreen()),
+          MaterialPageRoute(builder: (context) => const HesapOzetiScreen()),
         );
-        break;
-      // Diğer indeksler için Navigator.push eklenebilir
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const TaleplerimScreen()),
+        );
+      case 3:
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const DigerScreen()));
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
-            children: <Widget>[
-              // UserInfoAndDebtSection(),
-              // IlanPanosuSection(),
-              // AyricaliklarimSection(),
-              // DuyurularSection(),
-              // İhtiyaca göre daha fazla bölüm eklenebilir
-            ],
+            children: <Widget>[],
           ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Ana Sayfa',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long),
-            label: 'Hesap Özeti',
-          ),
-          // Diğer BottomNavigationBarItem'lar eklenebilir
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
       ),
     );
   }
 }
-
-// class BottomNavigationBarSection extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBar(
-//       type: BottomNavigationBarType.fixed,
-//       items: [
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.home),
-//           label: 'Ana Sayfa',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.receipt_long),
-//           label: 'Hesap Özeti',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.assignment),
-//           label: 'Taleplerim',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.person_outline),
-//           label: 'Size Özel',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.more_horiz),
-//           label: 'Diğer',
-//         ),
-//       ],
-//     );
-//   }
-// }

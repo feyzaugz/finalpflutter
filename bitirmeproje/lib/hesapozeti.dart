@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'screens/home_screen/widgets/kart_ekle.dart';
+
 class HesapOzetiScreen extends StatefulWidget {
   static const String routeName = "/hesap-ozeti";
+
+  const HesapOzetiScreen({super.key});
 
   @override
   _HesapOzetiScreenState createState() => _HesapOzetiScreenState();
@@ -23,20 +27,21 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Hesap Özeti'),
+        title: const Text('Hesap Özeti'),
+        centerTitle: true,
         // AppBar stil ayarları yapılabilir
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const SizedBox(height: 20),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               // Kalender ikonunu kullan
               child: Icon(Icons.event, size: 100, color: Colors.blue),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 'Son ödeme tarihi yaklaşan ödemelerinizi hatırlatmamızı ister misiniz?',
                 textAlign: TextAlign.center,
@@ -53,13 +58,13 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
                     onPressed: () {
                       // Sonra karar ver butonu işlevi
                     },
-                    child: Text('Sonra Karar Ver'),
+                    child: const Text('Sonra Karar Ver'),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       // Evet, isterim butonu işlevi
                     },
-                    child: Text('Evet, İsterim'),
+                    child: const Text('Evet, İsterim'),
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.blue,
                       // primary: Colors.blue,
@@ -82,17 +87,20 @@ class _HesapOzetiScreenState extends State<HesapOzetiScreen> {
 class NoDebtInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(Icons.celebration, size: 48, color: Colors.orange),
-        Text('Borçunuz Bulunmuyor'),
-        OutlinedButton(
-          onPressed: () {
-            // Hesap Özeti İnceleme işlevi
-          },
-          child: Text('Hesap Özetini İncele'),
-        ),
-      ],
+    return const Padding(
+      padding: EdgeInsets.all(50.0),
+      child: Column(
+        children: [
+          Icon(Icons.celebration, size: 48, color: Colors.orange),
+          Text('Borcunuz Bulunmuyor'),
+          // OutlinedButton(
+          //   onPressed: () {
+          //     // Hesap Özeti İnceleme işlevi
+          //   },
+          //   child: const Text('Hesap Özetini İncele'),
+          // ),
+        ],
+      ),
     );
   }
 }
@@ -100,25 +108,46 @@ class NoDebtInfoSection extends StatelessWidget {
 class MyCardsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          leading: Icon(Icons.credit_card, size: 48, color: Colors.blue),
-          title: Text('Kayıtlı Kartınız Bulunmuyor!'),
-          trailing: OutlinedButton(
-            onPressed: () {
-              // Kart ekleme işlevi
-            },
-            child: Text('Kart Ekle'),
-          ),
+    return Card(
+      color: Colors.white,
+      margin: const EdgeInsets.all(5.0),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.credit_card, size: 48, color: Colors.blue),
+                    SizedBox(width: 10),
+                    Text('Kayıtlı Kartınız Bulunmuyor!'),
+                  ],
+                ),
+                OutlinedButton(
+                  onPressed: () {
+                    // Kart ekleme sayfasına yönlendir
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddCardScreen()),
+                    );
+                  },
+                  child: const Text('Kart Ekle'),
+                ),
+              ],
+            ),
+            TextButton(
+              onPressed: () {
+                // Pasif Kartları Görüntüle işlevi
+              },
+              child: const Text('Pasif Kartları Görüntüle'),
+            ),
+          ],
         ),
-        TextButton(
-          onPressed: () {
-            // Pasif Kartları Görüntüle işlevi
-          },
-          child: Text('Pasif Kartları Görüntüle'),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -126,68 +155,62 @@ class MyCardsSection extends StatelessWidget {
 class AccountGraphSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
+    return Padding(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: [
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Hesap Grafiği',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
-              ),
-              TextButton(
-                onPressed: () {
-                  // Genel görünüm işlevi
-                },
-                child: Text('Genel'),
-              ),
+              // Text(
+              //   'Hesap Grafiği',
+              //   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+              // ),
+              // TextButton(
+              //   onPressed: () {
+              //     // Genel görünüm işlevi
+              //   },
+              //   child: Text('Genel'),
+              // ),
             ],
           ),
-        ),
-        Container(
-          height: 200.0, // Grafik yüksekliği
-          color: Colors.blue[100], // Grafik arka plan rengi
-          child: Center(
-            child: Text('Grafik alanı'), // Grafik burada yer alacak
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Row(
+          // Container(
+          //   height: 200.0, // Grafik yüksekliği
+          //   color: Colors.blue[100], // Grafik arka plan rengi
+          //   child: Center(
+          //     child: Text('Grafik alanı'), // Grafik burada yer alacak
+          //   ),
+          // ),
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Hesap Özeti İşlevi
-                },
-                icon: Icon(Icons.search),
-                label: Text('Hesap Özeti'),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.blue[200],
-                  // primary: Colors.blue[200],
-                  shape: StadiumBorder(),
-                ),
-              ),
+              // ElevatedButton.icon(
+              //   onPressed: () {
+              //     // Hesap Özeti İşlevi
+              //   },
+              //   icon: Icon(Icons.search),
+              //   label: Text('Hesap Özeti'),
+              //   style: ElevatedButton.styleFrom(
+              //     foregroundColor: Colors.blue[200],
+              //     shape: StadiumBorder(),
+              //   ),
+              // ),
               ElevatedButton.icon(
                 onPressed: () {
                   // Ödeme Yap İşlevi
                 },
-                icon: Icon(Icons.payment),
-                label: Text('Ödeme Yap'),
+                icon: const Icon(Icons.payment),
+                label: const Text('Ödeme Yap'),
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.blue,
                   backgroundColor: Colors.white,
-                  //     primary: Colors.blue,
-                  // onPrimary: Colors.white,
-                  shape: StadiumBorder(),
+                  shape: const StadiumBorder(),
                 ),
               ),
             ],
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

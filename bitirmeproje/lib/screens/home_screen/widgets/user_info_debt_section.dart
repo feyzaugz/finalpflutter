@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'debt_card.dart';
-import 'user_card.dart';
+import '../../debt_screen/debt_card.dart';
+import 'kullanici_card.dart';
 
 class UserInfoAndDebtSection extends StatelessWidget {
   @override

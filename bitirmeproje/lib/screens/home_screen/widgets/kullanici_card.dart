@@ -1,4 +1,6 @@
+import 'package:bitirmeproje/core/global_providers/auth_state_provider.dart';
 import 'package:bitirmeproje/core/global_providers/user_state_provider.dart';
+import 'package:bitirmeproje/core/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

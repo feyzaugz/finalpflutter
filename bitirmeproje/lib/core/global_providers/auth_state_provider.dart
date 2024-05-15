@@ -19,7 +19,6 @@ class AuthState extends _$AuthState {
 
   listenUserChanges() {
     FirebaseAuth.instance.authStateChanges().listen((event) {
-      print("Auth state event $event");
       state = event;
     });
   }
