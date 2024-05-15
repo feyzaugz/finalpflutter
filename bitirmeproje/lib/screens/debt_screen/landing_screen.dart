@@ -1,10 +1,10 @@
 import 'package:bitirmeproje/hesapozeti.dart';
 import 'package:bitirmeproje/screens/home_screen/home_screen.dart';
 import 'package:bitirmeproje/screens/Diger%20Ekran/diger_screen.dart';
+import 'package:bitirmeproje/screens/taleplerim_screen/taleplerim.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../Taleplerim Ekran/taleplerim.dart';
 
 class LandingScreen extends ConsumerWidget {
   final String path;
@@ -49,8 +49,8 @@ class LandingScreen extends ConsumerWidget {
               context.go(
                   TaleplerimScreen.routeName); // Taleplerim sayfasına yönlendir
             case 3:
-              context.go(
-                  DigerScreen.routeName); // Taleplerim sayfasına yönlendir
+              context
+                  .go(DigerScreen.routeName); // Taleplerim sayfasına yönlendir
 
               break;
           }

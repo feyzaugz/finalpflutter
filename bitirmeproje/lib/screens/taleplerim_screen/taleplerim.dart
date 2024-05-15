@@ -21,6 +21,12 @@ class _TaleplerimScreenState extends State<TaleplerimScreen> {
             icon: const Icon(Icons.add),
             onPressed: () {
               // Yeni talep ekleme sayfasına yönlendirme işlemi
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const YeniTalepScreen()),
+              );
             },
           )
         ],
@@ -68,10 +74,10 @@ class _TaleplerimScreenState extends State<TaleplerimScreen> {
                         onPressed: () {
                           // Evet, isterim butonu işlevi
                         },
-                        child: const Text("Evet, İsterim"),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
                         ),
+                        child: const Text("Evet, İsterim"),
                       ),
                     ],
                   ),

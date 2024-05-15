@@ -2,8 +2,8 @@ import 'package:bitirmeproje/hesapozeti.dart';
 import 'package:bitirmeproje/screens/email_verify_screen.dart';
 import 'package:bitirmeproje/screens/debt_screen/landing_screen.dart';
 import 'package:bitirmeproje/screens/Diger%20Ekran/diger_screen.dart';
-import 'package:bitirmeproje/screens/Taleplerim%20Ekran/taleplerim.dart';
 import 'package:bitirmeproje/screens/login_screen.dart';
+import 'package:bitirmeproje/screens/taleplerim_screen/taleplerim.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -103,7 +103,7 @@ class RouterNotifier extends ChangeNotifier {
                 }
               },
             ),
-              GoRoute(
+            GoRoute(
               path: TaleplerimScreen.routeName,
               parentNavigatorKey: shellNavigator,
               builder: (BuildContext context, GoRouterState state) {

@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/models/advert.dart';
 import 'package:bitirmeproje/core/models/announcement.dart';
+import 'package:bitirmeproje/core/models/request.dart';
 import 'package:bitirmeproje/core/models/user.dart';
 import 'package:bitirmeproje/core/services/firestore_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,6 +33,10 @@ class FirestoreRepository {
 
   Future<List<Announcement>> getAnnouncement() async {
     return _ref.read(firestoreServiceProvider).getAnnouncement();
+  }
+
+  Future<void> addNewRequest(Request request) async {
+    return _ref.read(firestoreServiceProvider).addNewRequest(request);
   }
 }
 

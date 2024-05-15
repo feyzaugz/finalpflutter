@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/models/advert.dart';
 import 'package:bitirmeproje/core/models/announcement.dart';
+import 'package:bitirmeproje/core/models/request.dart';
 import 'package:bitirmeproje/core/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -75,6 +76,10 @@ class FirestoreService {
     }
 
     return announcements;
+  }
+
+  Future<void> addNewRequest(Request request) async {
+    await db.collection("requests").add(request.toJson());
   }
 }
 
