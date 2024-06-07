@@ -28,4 +28,15 @@ class Ilanlar extends _$Ilanlar {
       return false;
     }
   }
+
+  Future<bool> sendMessage(Map<String, dynamic> message) async {
+    try {
+      await ref.read(firestoreRepositoryProvider).sendMessage(message);
+      getAdverts();
+      return true;
+    } on FirebaseException catch (e) {
+      debugPrint(e.toString());
+      return false;
+    }
+  }
 }

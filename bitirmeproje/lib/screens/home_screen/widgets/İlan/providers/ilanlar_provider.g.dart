@@ -6,7 +6,7 @@ part of 'ilanlar_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$ilanlarHash() => r'ae0fab48fa8b2583b903d050c4a2a99952ef96c2';
+String _$ilanlarHash() => r'd1a3797583cc3fe150ae1873ed28f0c9b7d23c46';
 
 /// See also [Ilanlar].
 @ProviderFor(Ilanlar)

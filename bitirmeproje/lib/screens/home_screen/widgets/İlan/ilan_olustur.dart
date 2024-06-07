@@ -118,16 +118,18 @@ class _IlanOlusturScreenState extends State<IlanOlusturScreen> {
                       _formKey.currentState!.save();
 
                       Advert newAdvert = Advert(
-                          title: _title!,
-                          icon: "gamepad",
-                          category: "Teknoloji",
-                          saleType: "Ürün Satışı",
-                          date: DateTime.now(),
-                          price: 0,
-                          location: "İzmir",
-                          status: "Güncel",
-                          description: _description!,
-                          advertiserId: ref.read(authStateProvider)!.uid);
+                        id: null,
+                        title: _title!,
+                        icon: "gamepad",
+                        category: "Teknoloji",
+                        saleType: "Ürün Satışı",
+                        date: DateTime.now(),
+                        price: 0,
+                        location: "İzmir",
+                        status: "Güncel",
+                        description: _description!,
+                        advertiserId: ref.read(authStateProvider)!.uid,
+                      );
 
                       bool result = await ref
                           .read(ilanlarProvider.notifier)

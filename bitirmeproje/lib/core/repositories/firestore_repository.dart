@@ -64,6 +64,10 @@ class FirestoreRepository {
   Future<List<Map>> getCards(String uid) async {
     return _ref.read(firestoreServiceProvider).getCards(uid);
   }
+
+  Future<void> sendMessage(Map<String, dynamic> message) {
+    return _ref.read(firestoreServiceProvider).sendMessage(message);
+  }
 }
 
 @riverpod

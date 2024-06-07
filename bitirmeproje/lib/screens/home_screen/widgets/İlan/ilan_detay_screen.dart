@@ -1,5 +1,5 @@
 import 'package:bitirmeproje/core/models/advert.dart';
-import 'package:bitirmeproje/screens/home_screen/widgets/mesaj_g%C3%B6nder.dart';
+import 'package:bitirmeproje/screens/home_screen/widgets/mesaj_gonder.dart';
 import 'package:flutter/material.dart';
 
 class IlanDetayScreen extends StatelessWidget {
@@ -139,15 +139,17 @@ class IlanDetayScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SendMessageScreen(),
+                  builder: (context) => SendMessageScreen(
+                    advert: advert,
+                  ),
                 ),
               );
             },
-            child: const Text('Mesaj Gönder'),
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).primaryColor,
               foregroundColor: Colors.white,
             ),
+            child: const Text('Mesaj Gönder'),
           ),
         ],
       ),

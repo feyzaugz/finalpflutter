@@ -1,6 +1,7 @@
 import 'package:bitirmeproje/core/models/user.dart';
 
 class Advert {
+  late String? id;
   late String title;
   late String icon;
   late String category;
@@ -14,7 +15,8 @@ class Advert {
   late String advertiserId;
 
   Advert(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.icon,
       required this.category,
       required this.saleType,
@@ -27,6 +29,7 @@ class Advert {
       this.advertiser});
 
   Advert.fromJson(dynamic json) {
+    id = json['id'];
     title = json['title'];
     icon = json['icon'];
     category = json['category'];
@@ -41,6 +44,7 @@ class Advert {
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
+    map['id'] = id;
     map['title'] = title;
     map['icon'] = icon;
     map['category'] = category;

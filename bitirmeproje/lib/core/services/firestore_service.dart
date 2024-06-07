@@ -58,7 +58,9 @@ class FirestoreService {
   }
 
   Future<void> createNewAdvert(Advert newAdvert) async {
-    await db.collection("ilanlar").add(newAdvert.toJson());
+    DocumentReference ref =
+        await db.collection("ilanlar").add(newAdvert.toJson());
+    await db.collection("ilanlar").doc(ref.id).update({"id": ref.id});
   }
 
   Future<List<Announcement>> getAnnouncement() async {
@@ -143,6 +145,33 @@ class FirestoreService {
     }
 
     return cards;
+  }
+
+  Future<void> sendMessage(Map<String, dynamic> message) async {
+    // Map<String, dynamic> message = {
+    //   "message": _messageController.text,
+    //   "date": DateTime.now(),
+    //   "sender": ref.read(authStateProvider)?.uid,
+    //   "advert": widget.advert.id,
+    //   "advertiserId": widget.advert.advertiserId
+    // };
+
+    await db
+        .collection("conversations")
+        .doc(
+            "${message["sender"]}-${message["advert"]}-${message["advertiserId"]}")
+        .set(message);
+
+    await db
+        .collection("conversations")
+        .doc(
+            "${message["sender"]}-${message["advert"]}-${message["advertiserId"]}")
+        .collection("messages")
+        .add({
+      "message": "${message["message"]}",
+      "date": DateTime.now(),
+      "sender": "${message["sender"]}",
+    });
   }
 }
 
