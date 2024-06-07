@@ -133,6 +133,17 @@ class FirestoreService {
 
     return guests;
   }
+
+  Future<List<Map>> getCards(String uid) async {
+    List<Map> cards = [];
+    QuerySnapshot query =
+        await db.collection("users").doc(uid).collection("cards").get();
+    for (var card in query.docs) {
+      cards.add(card.data() as Map);
+    }
+
+    return cards;
+  }
 }
 
 @riverpod

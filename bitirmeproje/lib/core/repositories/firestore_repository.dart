@@ -60,6 +60,10 @@ class FirestoreRepository {
   Future<void> addGuest(Map<String, dynamic> guest) async {
     return _ref.read(firestoreServiceProvider).addGuest(guest);
   }
+
+  Future<List<Map>> getCards(String uid) async {
+    return _ref.read(firestoreServiceProvider).getCards(uid);
+  }
 }
 
 @riverpod

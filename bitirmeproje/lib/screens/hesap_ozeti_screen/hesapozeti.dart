@@ -1,4 +1,5 @@
 import 'package:bitirmeproje/core/global_providers/user_state_provider.dart';
+import 'package:bitirmeproje/screens/hesap_ozeti_screen/providers/cards_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -100,56 +101,86 @@ class NoDebtInfoSection extends StatelessWidget {
   }
 }
 
-class MyCardsSection extends StatelessWidget {
+class MyCardsSection extends ConsumerWidget {
   const MyCardsSection({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Colors.white,
-      margin: const EdgeInsets.all(5.0),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cards = ref.watch(cardsProvider);
+
+    if (cards.isEmpty) {
+      return Card(
+        color: Colors.white,
+        margin: const EdgeInsets.all(5.0),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.credit_card, size: 48, color: Colors.blue),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text('Kayıtlı Kartınız Bulunmuyor!'),
+                        ),
+                      ],
+                    ),
+                  ),
+                  OutlinedButton(
+                    onPressed: () {
+                      // Kart ekleme sayfasına yönlendir
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddCardScreen()),
+                      );
+                    },
+                    child: const Text('Kart Ekle'),
+                  ),
+                ],
+              ),
+              TextButton(
+                onPressed: () {
+                  // Pasif Kartları Görüntüle işlevi
+                },
+                child: const Text('Pasif Kartları Görüntüle'),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return SizedBox(
+        height: 100,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: cards.length,
+            itemBuilder: (context, index) {
+              Map card = cards[index];
+              return SizedBox(
+                width: MediaQuery.of(context).size.width * .70,
+                child: Card(
+                    child: ListTile(
+                  leading: const Icon(Icons.credit_card),
+                  title: Text(card["cardName"]),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Icon(Icons.credit_card, size: 48, color: Colors.blue),
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Text('Kayıtlı Kartınız Bulunmuyor!'),
-                      ),
+                      Text(card["cardNumber"]),
+                      Text(card["expirationDate"]),
                     ],
                   ),
-                ),
-                OutlinedButton(
-                  onPressed: () {
-                    // Kart ekleme sayfasına yönlendir
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddCardScreen()),
-                    );
-                  },
-                  child: const Text('Kart Ekle'),
-                ),
-              ],
-            ),
-            TextButton(
-              onPressed: () {
-                // Pasif Kartları Görüntüle işlevi
-              },
-              child: const Text('Pasif Kartları Görüntüle'),
-            ),
-          ],
-        ),
-      ),
-    );
+                )),
+              );
+            }),
+      );
+    }
   }
 }
 
