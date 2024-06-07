@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/global_providers/user_state_provider.dart';
 import 'package:bitirmeproje/screens/hesap_ozeti_screen/providers/cards_provider.dart';
+import 'package:bitirmeproje/screens/home_screen/widgets/odeme_ekrani.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -213,9 +214,11 @@ class MyCardsSection extends ConsumerWidget {
   }
 }
 
-class AccountGraphSection extends StatelessWidget {
+class AccountGraphSection extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(userStateProvider);
+
     return Padding(
       padding: const EdgeInsets.all(50.0),
       child: Column(
@@ -256,18 +259,27 @@ class AccountGraphSection extends StatelessWidget {
               //     shape: StadiumBorder(),
               //   ),
               // ),
-              ElevatedButton.icon(
-                onPressed: () {
-                  // Ödeme Yap İşlevi
-                },
-                icon: const Icon(Icons.payment),
-                label: const Text('Ödeme Yap'),
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.blue,
-                  backgroundColor: Colors.white,
-                  shape: const StadiumBorder(),
+
+              if (user!.debt > 0)
+                ElevatedButton.icon(
+                  onPressed: () {
+                    // Ödeme Yap İşlevi
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PaymentScreen(),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.payment),
+                  label: const Text('Ödeme Yap'),
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.blue,
+                    backgroundColor: Colors.white,
+                    shape: const StadiumBorder(),
+                  ),
                 ),
-              ),
             ],
           ),
         ],
