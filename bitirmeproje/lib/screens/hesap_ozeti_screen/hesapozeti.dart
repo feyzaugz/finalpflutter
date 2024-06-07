@@ -157,28 +157,57 @@ class MyCardsSection extends ConsumerWidget {
       );
     } else {
       return SizedBox(
-        height: 100,
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: cards.length,
-            itemBuilder: (context, index) {
-              Map card = cards[index];
-              return SizedBox(
-                width: MediaQuery.of(context).size.width * .70,
-                child: Card(
-                    child: ListTile(
-                  leading: const Icon(Icons.credit_card),
-                  title: Text(card["cardName"]),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(card["cardNumber"]),
-                      Text(card["expirationDate"]),
-                    ],
+        height: 200,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Kayıtlı Kartlar',
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                )),
-              );
-            }),
+                  IconButton.filled(
+                    onPressed: () {
+                      // Kart ekleme sayfasına yönlendir
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddCardScreen()),
+                      );
+                    },
+                    icon: const Icon(Icons.add),
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: cards.length,
+                  itemBuilder: (context, index) {
+                    Map card = cards[index];
+                    return SizedBox(
+                      width: MediaQuery.of(context).size.width * .70,
+                      child: Card(
+                          child: ListTile(
+                        leading: const Icon(Icons.credit_card),
+                        title: Text(card["cardName"]),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(card["cardNumber"]),
+                            Text(card["expirationDate"]),
+                          ],
+                        ),
+                      )),
+                    );
+                  }),
+            ),
+          ],
+        ),
       );
     }
   }
