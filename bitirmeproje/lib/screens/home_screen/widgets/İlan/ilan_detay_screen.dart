@@ -10,7 +10,7 @@ class IlanDetayScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle titleStyle = TextStyle(
-        color: Theme.of(context).textTheme.bodyText1?.color?.withOpacity(0.6));
+        color: Theme.of(context).textTheme.bodyMedium?.color?.withOpacity(0.6));
     const Divider(indent: 16.0, endIndent: 16.0);
 
     return Scaffold(

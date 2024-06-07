@@ -109,6 +109,10 @@ class FirestoreService {
   Future<void> addNewCard(Map<String, dynamic> cardDetails, String uid) async {
     await db.collection("users").doc(uid).collection("cards").add(cardDetails);
   }
+
+  Future<void> addGuest(Map<String, dynamic> guest) async {
+    await db.collection("guests").add(guest);
+  }
 }
 
 @riverpod
