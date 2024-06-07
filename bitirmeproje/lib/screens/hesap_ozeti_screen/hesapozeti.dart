@@ -139,7 +139,8 @@ class MyCardsSection extends ConsumerWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AddCardScreen()),
+                          builder: (context) => const AddCardScreen(),
+                        ),
                       );
                     },
                     child: const Text('Kart Ekle'),

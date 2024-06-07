@@ -29,6 +29,7 @@ class Cards extends _$Cards {
   Future<bool> addNewCard(Map<String, dynamic> cardDetails, String uid) async {
     try {
       await ref.read(firestoreRepositoryProvider).addNewCard(cardDetails, uid);
+     getCards();
       return true;
     } on FirebaseException catch (e) {
       debugPrint(e.toString());
