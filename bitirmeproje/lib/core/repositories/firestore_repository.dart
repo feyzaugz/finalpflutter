@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/models/advert.dart';
 import 'package:bitirmeproje/core/models/announcement.dart';
+import 'package:bitirmeproje/core/models/guest.dart';
 import 'package:bitirmeproje/core/models/privilege.dart';
 import 'package:bitirmeproje/core/models/request.dart';
 import 'package:bitirmeproje/core/models/user.dart';
@@ -50,6 +51,14 @@ class FirestoreRepository {
 
   Future<void> addNewCard(Map<String, dynamic> cardDetails, String uid) async {
     return _ref.read(firestoreServiceProvider).addNewCard(cardDetails, uid);
+  }
+
+  Future<List<Guest>> getGuests() async {
+    return _ref.read(firestoreServiceProvider).getGuests();
+  }
+
+  Future<void> addGuest(Map<String, dynamic> guest) async {
+    return _ref.read(firestoreServiceProvider).addGuest(guest);
   }
 }
 

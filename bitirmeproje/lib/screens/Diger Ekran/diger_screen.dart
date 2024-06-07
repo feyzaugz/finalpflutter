@@ -1,5 +1,5 @@
 import 'package:bitirmeproje/screens/Diger%20Ekran/telefon_rehberi.dart';
-import 'package:bitirmeproje/screens/Diger%20Ekran/ziyaretci_kart.dart';
+import 'package:bitirmeproje/screens/guests_screen/guests_screen.dart';
 import 'package:bitirmeproje/screens/home_screen/widgets/duyurular/duyurular_tumu.dart';
 import 'package:bitirmeproje/screens/home_screen/widgets/kullanici_card.dart';
 import 'package:flutter/material.dart';

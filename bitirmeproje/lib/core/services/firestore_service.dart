@@ -1,5 +1,6 @@
 import 'package:bitirmeproje/core/models/advert.dart';
 import 'package:bitirmeproje/core/models/announcement.dart';
+import 'package:bitirmeproje/core/models/guest.dart';
 import 'package:bitirmeproje/core/models/privilege.dart';
 import 'package:bitirmeproje/core/models/request.dart';
 import 'package:bitirmeproje/core/models/user.dart';
@@ -112,6 +113,25 @@ class FirestoreService {
 
   Future<void> addGuest(Map<String, dynamic> guest) async {
     await db.collection("guests").add(guest);
+  }
+
+  Future<List<Guest>> getGuests() async {
+    List<Guest> guests = [];
+
+    QuerySnapshot<Guest> doc = await db
+        .collection('guests')
+        .withConverter<Guest>(
+          fromFirestore: (announcement, _) =>
+              Guest.fromJson(announcement.data()!),
+          toFirestore: (announcement, _) => announcement.toJson(),
+        )
+        .get();
+
+    for (var guest in doc.docs) {
+      guests.add(guest.data());
+    }
+
+    return guests;
   }
 }
 

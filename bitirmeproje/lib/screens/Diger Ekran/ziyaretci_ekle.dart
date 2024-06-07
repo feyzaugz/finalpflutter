@@ -1,4 +1,5 @@
 import 'package:bitirmeproje/core/services/firestore_service.dart';
+import 'package:bitirmeproje/screens/guests_screen/providers/guests_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -132,9 +133,29 @@ class _YeniZiyaretciKaydiScreenState extends State<YeniZiyaretciKaydiScreen> {
                           "explanation": _aciklama
                         };
 
-                        await ref
-                            .read(firestoreServiceProvider)
+                        bool result = await ref
+                            .read(guestsProvider.notifier)
                             .addGuest(guest);
+
+                        if (result && context.mounted) {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog.adaptive(
+                              title: const Text('Başarılı'),
+                              content:
+                                  const Text("Ziyaretci başarıyla kaydedildi."),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text('Ok'),
+                                )
+                              ],
+                            ),
+                          );
+                        }
                       } else {
                         showDialog(
                           context: context,
